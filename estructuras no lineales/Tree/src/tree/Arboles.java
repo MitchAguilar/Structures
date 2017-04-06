@@ -4,29 +4,34 @@ public class Arboles {
 
     public static void main(String[] args) {
         Tree a = new Tree();
+        a.insert(80, 344.4);
+        a.insert(45, 344.4);
         a.insert(30, 344.4);
-        a.insert(25, 344.4);
-        a.insert(15, 344.4);
-        a.insert(10, 344.4);
-        a.insert(27, 344.4);
-        a.insert(29, 344.4);
-        a.insert(40, 344.4);
-        a.insert(48, 344.4);
-        
-        System.out.println("pos: ");
+        a.insert(38, 344.4);
+        a.insert(50, 344.4);
+        a.insert(99, 344.4);
+        a.insert(85, 344.4);
+        a.insert(105, 344.4);
+        a.insert(91, 344.4);
+
+        System.out.println("pos:");
         a.posOreder(a.root);
-        System.out.println("inor: ");
+        System.out.println("\ninor: ");
         a.inOreder(a.root);
-        System.out.println("pre oreder: ");
+        System.out.println("\npre oreder:");
         a.preOreder(a.root);
+        System.out.println("");
+        System.out.println("EL menor es: " + a.mostrarmenos());
+        System.out.println("el mayor es: " + a.mostrarmas());
+        System.out.println("Buscar: " + a.buscar(544));
     }
 
     public static class Node {
 
         public int idata;
         public double ddata;
-        public Node lleftchild;
-        public Node rightChild;
+        public Node izquierda;
+        public Node derecha;
 
         public Node() {
 
@@ -51,24 +56,26 @@ public class Arboles {
         }
 
         public void insert(int id, double dd) {
-            Node node = new Node(id, dd);
+            Node nuevo = new Node(id, dd);
             if (root == null) {
-                root = node;
+                root = nuevo;
             } else {
-                Node aux=root;
-                Node hoj;
-                while(true){
-                    no
-                          
-                    Node tem;
-                    if(id < node.idata){
-                        node.lleftchild=node;
-                        
-                        return;
-                    }
-                    if(id>node.idata){
-                        node.rightChild=node;
-                        return;
+                Node aux = root;
+                Node temp;
+                while (true) {
+                    temp = aux;
+                    if (id < aux.idata) {
+                        aux = aux.izquierda;
+                        if (aux == null) {
+                            temp.izquierda = nuevo;
+                            return;
+                        }
+                    } else {
+                        aux = aux.derecha;
+                        if (aux == null) {
+                            temp.derecha = nuevo;
+                            return;
+                        }
                     }
                 }
             }
@@ -81,30 +88,125 @@ public class Arboles {
                 root.displayNode();
             }
         }
+
         //pre order recuersivo
-        public void preOreder(Node localRoot){
-            if(localRoot!=null){
-                System.out.println(localRoot.idata+" ");
-                preOreder(localRoot.lleftchild);
-                preOreder(localRoot.rightChild);
+        public void preOreder(Node localRoot) {
+            if (localRoot != null) {
+                System.out.print(localRoot.idata + " ");
+                preOreder(localRoot.izquierda);
+                preOreder(localRoot.derecha);
             }
         }
+
         //inorder
-        public void inOreder(Node localRoot){
-            if(localRoot!=null){
-                posOreder(localRoot.lleftchild);
-                System.out.println(localRoot.idata+" ");
-                posOreder(localRoot.rightChild);
+        public void inOreder(Node localRoot) {
+            if (localRoot != null) {
+                posOreder(localRoot.izquierda);
+                System.out.print(localRoot.idata + " ");
+                posOreder(localRoot.derecha);
             }
         }
-        
+
         //postorder
-        public void posOreder(Node locaroot){
-            if(locaroot!=null){
-                posOreder(locaroot.lleftchild);
-                posOreder(locaroot.rightChild);
-                System.out.println(locaroot.idata+" ");
+        public void posOreder(Node locaroot) {
+            if (locaroot != null) {
+                posOreder(locaroot.izquierda);
+                posOreder(locaroot.derecha);
+                System.out.print(locaroot.idata + " ");
+            }
+        }
+
+        public int mostrarmenos() {
+            int re = 0;
+            Node aux = root;
+            while (true) {
+                Node aux2 = aux;
+                if (aux.izquierda == null) {
+                    re = aux.idata;
+                    break;
+                } else {
+                    aux = aux2.izquierda;
+                }
+            }
+            return re;
+        }
+
+        public int mostrarmas() {
+            int re = 0;
+            Node aux = root;
+            while (true) {
+                Node aux2 = aux;
+                if (aux.derecha == null) {
+                    re = aux.idata;
+                    break;
+                } else {
+                    aux = aux2.derecha;
+                }
+            }
+            return re;
+        }
+
+        public boolean buscar(int b) {
+            boolean a = false;
+            if (root != null) {
+                Node aux = root;
+                Node temp;
+                boolean ca = true;
+                if (aux.idata == b) {
+                    a = true;
+                } else {
+                    while (ca) {
+                        temp = aux;
+                        if (b < aux.idata) {
+                            aux = aux.izquierda;
+                            if (aux.idata == b) {
+                                a = true;
+                                ca = false;
+                            }
+                        } else {
+                            aux = aux.derecha;
+                            if (aux.idata == b) {
+                                a = true;
+                                ca = false;
+                            }
+                        }
+                    }
+                }
+            }
+            return a;
+        }
+
+        public void msotrarhojas(int a) {
+            Node aux = root;
+            Node temp;
+            while (true) {
+                temp = aux;
+                if (a < aux.idata) {
+
+                } else {
+
+                }
+//                if (a < aux.idata) {
+//                    aux = aux.izquierda;
+//                    if (aux == null) {
+//                        temp.izquierda = nuevo;
+//                        return;
+//                    }
+//                } else {
+//                    aux = aux.derecha;
+//                    if (aux == null) {
+//                        temp.derecha = nuevo;
+//                        return;
+//                    }
+//                }
             }
         }
     }
 }
+//que busque y que elimine
+//el menor valor de todo el arbol
+///el mayor vlaor de todo el arbol
+//nodos que son hojas
+//boorado par aun nodo de dos hijos
+//hacer todas la sfunciones de forma recursiva
+
