@@ -1,3 +1,4 @@
+
 public class Arboles {
 
     public static void main(String[] args) {
@@ -18,7 +19,7 @@ public class Arboles {
         a.inOreder(a.root);
         System.out.print("\npre oreder: ");
         a.preOreder(a.root);
-        System.out.println("");
+        System.out.println("\n");
         System.out.print("EL menor es: " + a.mostrarmenos());
         System.out.print("  ----- El menor recursivo: ");
         a.mostrarmenosrecursivo(a.root);
@@ -26,8 +27,11 @@ public class Arboles {
         System.out.print("el mayor es: " + a.mostrarmas());
         System.out.print(" ----- El mayor recursivo: ");
         a.mostrarmayorrecursivo(a.root);
-        System.out.println("");
-        System.out.println("Buscar: " + a.buscar(86));
+        System.out.println("\n");
+        System.out.print("Buscar: " + a.buscar(80));
+        System.out.print(" ----- Buscar recursivo: ");
+        a.buscarrecursivo(a.root, 80);
+        System.out.println("\n");
 //        System.out.println("Eliminar: " + a.eliminar(105));//no funciiona
     }
 
@@ -204,6 +208,18 @@ public class Arboles {
             }
             return a;
         }
+
+        public void buscarrecursivo(Node localroot, int a) {//no funciona
+            
+        }
+
+//        public Node busdere() {
+//
+//        }
+//
+//        public Node busizq() {
+//
+//        }
 
         public boolean eliminar(int a) {//no funciona
             boolean b = false;
