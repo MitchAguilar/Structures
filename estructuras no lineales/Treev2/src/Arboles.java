@@ -1,5 +1,3 @@
-package tree;
-
 public class Arboles {
 
     public static void main(String[] args) {
@@ -14,17 +12,23 @@ public class Arboles {
         a.insert(105, 344.4);
         a.insert(91, 344.4);
 
-        System.out.println("pos:");
+        System.out.print("pos:        ");
         a.posOreder(a.root);
-        System.out.println("\ninor: ");
+        System.out.print("\ninor:       ");
         a.inOreder(a.root);
-        System.out.println("\npre oreder:");
+        System.out.print("\npre oreder: ");
         a.preOreder(a.root);
         System.out.println("");
-        System.out.println("EL menor es: " + a.mostrarmenos());
-        System.out.println("el mayor es: " + a.mostrarmas());
+        System.out.print("EL menor es: " + a.mostrarmenos());
+        System.out.print("  ----- El menor recursivo: ");
+        a.mostrarmenosrecursivo(a.root);
+        System.out.println("");
+        System.out.print("el mayor es: " + a.mostrarmas());
+        System.out.print(" ----- El mayor recursivo: ");
+        a.mostrarmayorrecursivo(a.root);
+        System.out.println("");
         System.out.println("Buscar: " + a.buscar(86));
-        System.out.println("Eliminar: " + a.eliminar(105));//no funciiona
+//        System.out.println("Eliminar: " + a.eliminar(105));//no funciiona
     }
 
     public static class Node {
@@ -117,6 +121,22 @@ public class Arboles {
             }
         }
 
+        public void mostrarmenosrecursivo(Node localroot) {//funciona
+            if (localroot.izquierda != null) {
+                mostrarmenosrecursivo(localroot.izquierda);
+            } else {
+                System.out.print(localroot.idata);
+            }
+        }
+
+        public void mostrarmayorrecursivo(Node localroot) {//funciona
+            if (localroot.derecha != null) {
+                mostrarmayorrecursivo(localroot.derecha);
+            } else {
+                System.out.print(localroot.idata);
+            }
+        }
+
         public int mostrarmenos() {//funciona
             int re = 0;
             Node aux = root;
@@ -185,7 +205,7 @@ public class Arboles {
             return a;
         }
 
-        public boolean eliminar(int a) {//nno funciona
+        public boolean eliminar(int a) {//no funciona
             boolean b = false;
             if (root != null) {
                 if (root.idata == a) {
@@ -196,7 +216,7 @@ public class Arboles {
                         Node aux2 = aux;
                         if (aux.idata <= a) {
                             if (aux.idata == a) {
-                                
+
                                 b = true;
                                 break;
                             } else {
@@ -224,34 +244,18 @@ public class Arboles {
             return b;
         }
 
-        public void msotrarhojas(int a) {
-            Node aux = root;
-            Node temp;
-            while (true) {
-                temp = aux;
-                if (a < aux.idata) {
-
-                } else {
+        public void msotrarhojas() {
+            if (root != null) {
+                int num = root.idata;
+                Node aux = root;
+                while (true) {
 
                 }
-//                if (a < aux.idata) {
-//                    aux = aux.izquierda;
-//                    if (aux == null) {
-//                        temp.izquierda = nuevo;
-//                        return;
-//                    }
-//                } else {
-//                    aux = aux.derecha;
-//                    if (aux == null) {
-//                        temp.derecha = nuevo;
-//                        return;
-//                    }
-//                }
             }
         }
     }
 }
-//que busque y que elimine
+//que busque y que elimine---- solo busca pero no elimina
 //el menor valor de todo el arbol---ya
 ///el mayor vlaor de todo el arbol----ya
 //nodos que son hojas
