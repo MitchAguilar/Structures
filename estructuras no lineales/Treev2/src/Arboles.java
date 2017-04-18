@@ -210,7 +210,7 @@ public class Arboles {
         }
 
         public void buscarrecursivo(Node localroot, int a) {//no funciona
-            
+
         }
 
 //        public Node busdere() {
@@ -220,7 +220,6 @@ public class Arboles {
 //        public Node busizq() {
 //
 //        }
-
         public boolean eliminar(int a) {//no funciona
             boolean b = false;
             if (root != null) {
