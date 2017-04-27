@@ -30,8 +30,17 @@ public class Arboles {
         System.out.println("\n");
         System.out.print("Buscar: " + a.buscar(80));
         System.out.print(" ----- Buscar recursivo: ");
-        a.buscarrecursivo(a.root, 80);
+//        a.buscarrecursivo(a.root, 80);
         System.out.println("\n");
+        System.out.println("El arbol tiene: ");
+        a.contarnodos(a.root);
+        System.out.println("\nEl arbol tiene2: " + a.contarnodos2(a.root));
+        System.out.println("\nContar bien: " + a.contar2(a));
+        System.out.println("\nMostrar hojas: ");
+        a.mostrarHojas(a.root);
+        System.out.println("\nrrecorrido: ");
+        a.mostrarrecorrido(a.root);
+
 //        System.out.println("Eliminar: " + a.eliminar(105));//no funciiona
     }
 
@@ -209,17 +218,26 @@ public class Arboles {
             return a;
         }
 
-        public void buscarrecursivo(Node localroot, int a) {//no funciona
-
+        public void contarnodos(Node LocalRoot) {
+            if (LocalRoot != null) {
+                contarnodos(LocalRoot.izquierda);
+                contarnodos(LocalRoot.derecha);
+                System.out.print("/");
+            }
         }
 
-//        public Node busdere() {
-//
-//        }
-//
-//        public Node busizq() {
-//
-//        }
+        public int contarnodos2(Node LocalRoot) {
+            if (LocalRoot == null) {
+                return 1;
+            } else {
+                return contarnodos2(LocalRoot.derecha) + contarnodos2(LocalRoot.izquierda);
+            }
+        }
+
+        public int contar2(Tree a) {
+            return contarnodos2(a.root);
+        }
+
         public boolean eliminar(int a) {//no funciona
             boolean b = false;
             if (root != null) {
@@ -259,13 +277,26 @@ public class Arboles {
             return b;
         }
 
-        public void msotrarhojas() {
-            if (root != null) {
-                int num = root.idata;
-                Node aux = root;
-                while (true) {
-
+        public void mostrarrecorrido(Node aux) {
+            if (aux != null) {
+                System.out.print(aux.idata + " ");
+                mostrarrecorrido(aux.izquierda);
+                
+                mostrarrecorrido(aux.derecha);
+                if (aux.derecha == null && aux.izquierda == null) {
+                    System.out.println(root.idata);
                 }
+            }
+
+        }
+
+        public void mostrarHojas(Node aux) {//funciona
+            if (aux != null) {
+                if (aux.izquierda == null && aux.derecha == null) {
+                    System.out.print(aux.idata + " ");
+                }
+                mostrarHojas(aux.izquierda);
+                mostrarHojas(aux.derecha);
             }
         }
     }
@@ -273,7 +304,7 @@ public class Arboles {
 //que busque y que elimine---- solo busca pero no elimina
 //el menor valor de todo el arbol---ya
 ///el mayor vlaor de todo el arbol----ya
-//nodos que son hojas
+//nodos que son hojas---ya
 //boorado par aun nodo de dos hijos
 //hacer todas la sfunciones de forma recursiva
 
