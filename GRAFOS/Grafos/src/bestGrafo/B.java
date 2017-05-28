@@ -1,16 +1,71 @@
 package bestGrafo;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 public class B {
 
-    public static void main(String[] args) {
-        // dirigido
+    public static void main(String[] args) throws InterruptedException {
+        double Inicio, Fin;
+        
+        double Inicio2, Fin2;
+        Inicio = System.currentTimeMillis();
+        GraphUno();
+        Fin = System.currentTimeMillis();
 
-        Graph theGraph = new Graph();
+        //ojo
+        Inicio2 = System.currentTimeMillis();
+        GraphTwo();
+        Fin2 = System.currentTimeMillis();
+//        Thread.sleep(10000);
+        System.err.println("\nThe Time for the firs graph is: " + (Fin - Inicio));
+        System.err.println("\nThe Time for the second graph is: " + (Fin2 - Inicio2) + "\n");
+    }
+
+    public static void GraphTwo() {
+        // dirigido
+        Graph theGraph = new Graph(11);
+        //creacion de los nodos como tal
+        theGraph.addVertex('A');//0
+        theGraph.addVertex('B');//1
+        theGraph.addVertex('C');//2
+        theGraph.addVertex('D');//3
+        theGraph.addVertex('E');//4
+        theGraph.addVertex('F');//5
+        theGraph.addVertex('G');//6
+        theGraph.addVertex('H');//7
+        theGraph.addVertex('I');//8
+        theGraph.addVertex('J');//9
+        theGraph.addVertex('K');//10
+
+        //creacion de los arcos
+        theGraph.addEdge(0, 1, 3);
+        theGraph.addEdge(0, 2, 8);
+        theGraph.addEdge(1, 3, 6);
+        theGraph.addEdge(1, 5, 2);
+        theGraph.addEdge(2, 1, 7);
+        theGraph.addEdge(2, 4, 6);
+        theGraph.addEdge(3, 5, 2);
+        theGraph.addEdge(4, 6, 4);
+        theGraph.addEdge(5, 6, 6);
+        theGraph.addEdge(6, 1, 2);
+        theGraph.addEdge(6, 4, 20);
+        theGraph.addEdge(7, 2, 2);
+        theGraph.addEdge(8, 3, 10);
+        theGraph.addEdge(9, 3, 3);
+        theGraph.addEdge(9, 8, 2);
+
+        //The graph
+        System.out.println("\nThe Graph: ");
+        theGraph.dispGraph();
+        System.out.println("\nAdjacency matrix: ");
+        //estado matrix
+        theGraph.matrix();
+    }
+
+    public static void GraphUno() {
+        // dirigido
+        Graph theGraph = new Graph(8);
         //creacion de los nodos como tal
         theGraph.addVertex('A');
         theGraph.addVertex('B');
@@ -32,16 +87,16 @@ public class B {
         theGraph.addEdge(5, 6, 6);
 
         //The graph
-        System.out.println("the Graph: ");
+        System.out.println("The Graph: ");
         theGraph.dispGraph();
-        System.out.println("Adjacency matrix: ");
+        System.out.println("\nAdjacency matrix: ");
         //estado matrix
         theGraph.matrix();
     }
 
     public static class Graph {
 
-        private final int MAX_VERTS = 10;
+        private int MAX_VERTS;
         private Vertex VertexList[];
         private int adjMat[][];
         private int value[][];
@@ -62,7 +117,8 @@ public class B {
 //            return k2p3.get(keyString);
 //        }
         //FIN  DE LO DEL MAPA
-        public Graph() {
+        public Graph(int MAX_VALUE) {
+            this.MAX_VERTS = MAX_VALUE;
             VertexList = new Vertex[MAX_VERTS];
             adjMat = new int[MAX_VERTS][MAX_VERTS];
             value = new int[MAX_VERTS][MAX_VERTS];
