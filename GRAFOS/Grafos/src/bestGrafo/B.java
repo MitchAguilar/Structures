@@ -26,7 +26,7 @@ public class B {
     }
     private static void GraphDiabolic(){
         //Compro
-        Graph theGraph= new Graph(26);
+        Graph theGraph= new Graph(27);
         //creación de graph
         theGraph.addVertex('A');//0
         theGraph.addVertex('B');//1
@@ -54,10 +54,11 @@ public class B {
         theGraph.addVertex('X');//23
         theGraph.addVertex('Y');//24
         theGraph.addVertex('Z');//25
+        theGraph.addVertex('z');//loco
         //LOS ARCOS
-        theGraph.addEdge(0, 1, 2);
-        theGraph.addEdge(0, 3, 4);
-        theGraph.addEdge(0, 20, 3);
+        theGraph.addEdge(0, 1, 2,1);
+        theGraph.addEdge(0, 3, 4,1);
+        theGraph.addEdge(0, 20, 3,1);
         theGraph.addEdge(1, 2, 5);
         theGraph.addEdge(1, 15, 2);
         theGraph.addEdge(1, 20, 2);
@@ -218,6 +219,11 @@ public class B {
             adjMat[start][end] = 1;
 //            value[start][end] = peso;
             k2p3.put(start + "," + end, peso);
+        }
+        public void addEdge(int start, int end,long peso,int dir){
+            adjMat[start][end]=adjMat[end][start]=1;
+            k2p3.put(start+","+end,peso);
+            k2p3.put(end+","+start,peso);
         }
 
         public void displayVertx(int v) {
