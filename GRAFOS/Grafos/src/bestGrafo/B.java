@@ -6,23 +6,28 @@ import java.util.Map;
 public class B {
 
     public static void main(String[] args) throws InterruptedException {
-//        double Inicio, Fin, Inicio2, Fin2, Inicio3, Fin3;
-//        Inicio = System.currentTimeMillis();
-//        GraphUno();
-//        Fin = System.currentTimeMillis();
-////        //ojo
-//        Inicio2 = System.currentTimeMillis();
-//        GraphTwo();
-//        Fin2 = System.currentTimeMillis();
+        double Inicio, Fin, Inicio2, Fin2, Inicio3, Fin3,Inicio4,Fin4;
+        Inicio = System.currentTimeMillis();
+        GraphUno();
+        Fin = System.currentTimeMillis();
 //        //ojo
-//        Inicio3 = System.currentTimeMillis();
-//        GraphDiabolic();
-//        Fin3 = System.currentTimeMillis();
-//
-//        Thread.sleep(2000);
-//        System.err.println("\nThe Time for the first graph is: " + (Fin - Inicio));
-//        System.err.println("\nThe Time for the second graph is: " + (Fin2 - Inicio2));
-//        System.err.println("\nThe Time for the third graph is: " + (Fin3 - Inicio3) + "\n");
+        Inicio2 = System.currentTimeMillis();
+        GraphTwo();
+        Fin2 = System.currentTimeMillis();
+        //ojo
+        Inicio3 = System.currentTimeMillis();
+        GraphDiabolic();
+        Fin3 = System.currentTimeMillis();
+        //ojo
+        Inicio4=System.currentTimeMillis();
+        GraphCochi();
+        Fin4=System.currentTimeMillis();
+        
+        Thread.sleep(2000);
+        System.err.println("\nThe Time for the first graph is: " + (Fin - Inicio));
+        System.err.println("\nThe Time for the second graph is: " + (Fin2 - Inicio2));
+        System.err.println("\nThe Time for the third graph is: " + (Fin3 - Inicio3));
+        System.err.println("\nThe Time for the fourd graph is: " + (Fin4 - Inicio4)+"\n");
 //        long matrixA[][] = {
 //            {0, 3, 4, 999999999, 8, 999999999},
 //            {999999999, 0, 999999999, 999999999, 5, 999999999},
@@ -32,54 +37,51 @@ public class B {
 //            {999999999, 999999999, 999999999, 2, 999999999, 0}};
 //        CaminoMasCorto ruta = new CaminoMasCorto();
 //        System.out.println(ruta.AlgoritmoFloid(matrixA));
-       GraphCochi();
+        
     }
 
     private static void GraphCochi() {
         //re jodido
-        GraphCochino theGraph = new GraphCochino(5);
-        
+        GraphCochino theGraph = new GraphCochino(11);
+
         theGraph.Normalizar();
-        
+
         theGraph.addVertex('A');//0
         theGraph.addVertex('B');//1
         theGraph.addVertex('C');//2
         theGraph.addVertex('D');//3
         theGraph.addVertex('E');//4
-//        theGraph.addVertex('F');//5
-//        theGraph.addVertex('G');//6
-//        theGraph.addVertex('H');//7
-//        theGraph.addVertex('I');//8
-//        theGraph.addVertex('J');//9
-//        theGraph.addVertex('K');//10
+        theGraph.addVertex('F');//5
+        theGraph.addVertex('G');//6
+        theGraph.addVertex('H');//7
+        theGraph.addVertex('I');//8
+        theGraph.addVertex('J');//9
+        theGraph.addVertex('K');//10
 
         //creacion de los arcos
 //        theGraph.addEdge(0, 4, 3);
-        theGraph.addEdge(0, 1, 4);
-        theGraph.addEdge(1, 2, 6);
-        theGraph.addEdge(1, 3, 5);
-        theGraph.addEdge(2, 3, 2);
+//        theGraph.addEdge(0, 1, 4);
+//        theGraph.addEdge(1, 2, 6);
+//        theGraph.addEdge(1, 3, 5);
+//        theGraph.addEdge(2, 3, 2);
 //        theGraph.addEdge(3, 4, 2);
-        
-        
-        
-//        theGraph.addEdge(0, 1, 3);
-//        theGraph.addEdge(1, 0, 8);
-//        theGraph.addEdge(1, 3, 6);
-//        theGraph.addEdge(1, 5, 2);
-//        theGraph.addEdge(2, 1, 7);
-//        theGraph.addEdge(2, 4, 6);
-//        theGraph.addEdge(3, 5, 2);
-//        theGraph.addEdge(4, 6, 4);
-//        theGraph.addEdge(5, 6, 6);
-//        theGraph.addEdge(6, 1, 2);
-//        theGraph.addEdge(6, 4, 9);
-//        theGraph.addEdge(7, 2, 2);
-//        theGraph.addEdge(8, 3, 1);
-//        theGraph.addEdge(9, 3, 3);
-//        theGraph.addEdge(9, 8, 2);
-//        theGraph.addEdge(10, 2, 3);
-//        theGraph.addEdge(10, 10, 2);
+        theGraph.addEdge(0, 1, 3);
+        theGraph.addEdge(1, 0, 8);
+        theGraph.addEdge(1, 3, 6);
+        theGraph.addEdge(1, 5, 2);
+        theGraph.addEdge(2, 1, 7);
+        theGraph.addEdge(2, 4, 6);
+        theGraph.addEdge(3, 5, 2);
+        theGraph.addEdge(4, 6, 4);
+        theGraph.addEdge(5, 6, 6);
+        theGraph.addEdge(6, 1, 2);
+        theGraph.addEdge(6, 4, 9);
+        theGraph.addEdge(7, 2, 2);
+        theGraph.addEdge(8, 3, 1);
+        theGraph.addEdge(9, 3, 3);
+        theGraph.addEdge(9, 8, 2);
+        theGraph.addEdge(10, 2, 3);
+        theGraph.addEdge(10, 10, 2);
 
         //The graph
         System.out.println("\nThe Graph: ");
@@ -88,15 +90,15 @@ public class B {
         //estado matrix
         theGraph.matrix();
         //caminos más cortos
-        
+
         CaminoMasCorto a = new CaminoMasCorto();
-        System.out.println("\n"+a.AlgoritmoFloid(theGraph.adjMat));
-        
+        System.out.println("\n" + a.AlgoritmoFloid(theGraph.adjMat));
+
     }
 
     private static void GraphDiabolic() {
         //Compro
-        Graph theGraph = new Graph(27);
+        Graph theGraph = new Graph(26);
         //creación de graph
         theGraph.addVertex('A');//0
         theGraph.addVertex('B');//1
@@ -124,7 +126,7 @@ public class B {
         theGraph.addVertex('X');//23
         theGraph.addVertex('Y');//24
         theGraph.addVertex('Z');//25
-        theGraph.addVertex('z');//loco
+//        theGraph.addVertex('z');//loco
         //LOS ARCOS
         theGraph.addEdge(0, 1, 2, 1);
         theGraph.addEdge(0, 3, 4, 1);
@@ -324,9 +326,9 @@ public class B {
                     if (matrixAdy[i][j] != 1000000000) {//ojo invesil con el infinito
                         if (i != j) {
                             if (caminos[i][j].equals("")) {
-                                caminitos += "De [" + (i + 1) + "----->" + (j + 1) + "] irce por (" + (i + 1) + " , " + (j + 1) + ")\n";
+                                caminitos += "De [" + (i + 1) + "----->" + (j + 1) + "] Metase por (" + (i + 1) + " , " + (j + 1) + ")\n";
                             } else {
-                                caminitos += "De [" + (i + 1) + "----->" + (j + 1) + "] irce por (" + (i + 1) + " , " + caminos[i][j] + ", " + (j + 1) + ")\n";
+                                caminitos += "De [" + (i + 1) + "----->" + (j + 1) + "] Metase por (" + (i + 1) + " , " + caminos[i][j] + ", " + (j + 1) + ")\n";
                             }
                         }
                     }
@@ -416,7 +418,7 @@ public class B {
 //            System.out.println("Graph completo");
             for (int i = 0; i < adjMat.length; i++) {
                 for (int j = 0; j < adjMat.length; j++) {
-                    if (adjMat[i][j] == 1) {
+                    if (adjMat[i][j] !=0) {
 //                        System.out.prit("["+VertexList[i].Label+"] "+"["+VertexList[j].Label+"]\n");
                         System.out.print("[");
                         displayVertx(i);
@@ -476,17 +478,19 @@ public class B {
 //            k2p3.put(start + "," + end, peso);
 //            k2p3.put(end + "," + start, peso);
         }
-        public void Normalizar(){
+
+        public void Normalizar() {
             for (int i = 0; i < adjMat.length; i++) {
                 for (int j = 0; j < adjMat.length; j++) {
-                    if(i==j){
-                        adjMat[i][j]=0;
-                    }else{
-                        adjMat[i][j]=999999999;
+                    if (i == j) {
+                        adjMat[i][j] = 0;
+                    } else {
+                        adjMat[i][j] = 999999999;
                     }
                 }
             }
         }
+
         public void displayVertx(int v) {
             System.out.print(VertexList[v].Label);
         }
@@ -505,8 +509,8 @@ public class B {
 //            System.out.println("Graph completo");
             for (int i = 0; i < adjMat.length; i++) {
                 for (int j = 0; j < adjMat.length; j++) {
-                    if (adjMat[i][j] !=999999999 && adjMat[i][j]!=0) {
-                        System.out.print("[" + VertexList[i].Label + "] " + "[" + VertexList[j].Label + "]\n");
+                    if (adjMat[i][j] != 999999999 && adjMat[i][j] != 0) {
+                        System.out.print("[" + VertexList[i].Label + "]" + "--"+adjMat[i][j]+"-->[" + VertexList[j].Label + "]\n");
 //                        System.out.print("[");
 //                        displayVertx(i);
 //                        System.out.print("]-" + k2p3.get(i + "," + j) + "->[");
