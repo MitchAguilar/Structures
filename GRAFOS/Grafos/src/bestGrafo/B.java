@@ -6,27 +6,37 @@ import java.util.Map;
 public class B {
 
     public static void main(String[] args) throws InterruptedException {
-        double Inicio, Fin,Inicio2, Fin2,Inicio3,Fin3;
-        Inicio = System.currentTimeMillis();
-        GraphUno();
-        Fin = System.currentTimeMillis();
+//        double Inicio, Fin, Inicio2, Fin2, Inicio3, Fin3;
+//        Inicio = System.currentTimeMillis();
+//        GraphUno();
+//        Fin = System.currentTimeMillis();
+////        //ojo
+//        Inicio2 = System.currentTimeMillis();
+//        GraphTwo();
+//        Fin2 = System.currentTimeMillis();
 //        //ojo
-        Inicio2 = System.currentTimeMillis();
-        GraphTwo();
-        Fin2 = System.currentTimeMillis();
-        //ojo
-        Inicio3=System.currentTimeMillis();
-        GraphDiabolic();
-        Fin3=System.currentTimeMillis();
-        
-        Thread.sleep(2000);
-        System.err.println("\nThe Time for the first graph is: " + (Fin - Inicio));
-        System.err.println("\nThe Time for the second graph is: " + (Fin2 - Inicio2));
-        System.err.println("\nThe Time for the third graph is: " + (Fin3 - Inicio3) + "\n");
+//        Inicio3 = System.currentTimeMillis();
+//        GraphDiabolic();
+//        Fin3 = System.currentTimeMillis();
+//
+//        Thread.sleep(2000);
+//        System.err.println("\nThe Time for the first graph is: " + (Fin - Inicio));
+//        System.err.println("\nThe Time for the second graph is: " + (Fin2 - Inicio2));
+//        System.err.println("\nThe Time for the third graph is: " + (Fin3 - Inicio3) + "\n");
+//        long matrixA[][] = {
+//            {0, 3, 4, 999999999, 8, 999999999},
+//            {999999999, 0, 999999999, 999999999, 5, 999999999},
+//            {999999999, 999999999, 0, 999999999, 3, 999999999, 999999999},
+//            {999999999, 999999999, 999999999, 0, 999999999, 999999999},
+//            {999999999, 999999999, 999999999, 7, 0, 3},
+//            {999999999, 999999999, 999999999, 2, 999999999, 0}};
+//        CaminoMasCorto ruta = new CaminoMasCorto();
+//        System.out.println(ruta.AlgoritmoFloid(matrixA));
     }
-    private static void GraphDiabolic(){
+
+    private static void GraphDiabolic() {
         //Compro
-        Graph theGraph= new Graph(27);
+        Graph theGraph = new Graph(27);
         //creación de graph
         theGraph.addVertex('A');//0
         theGraph.addVertex('B');//1
@@ -56,9 +66,9 @@ public class B {
         theGraph.addVertex('Z');//25
         theGraph.addVertex('z');//loco
         //LOS ARCOS
-        theGraph.addEdge(0, 1, 2,1);
-        theGraph.addEdge(0, 3, 4,1);
-        theGraph.addEdge(0, 20, 3,1);
+        theGraph.addEdge(0, 1, 2, 1);
+        theGraph.addEdge(0, 3, 4, 1);
+        theGraph.addEdge(0, 20, 3, 1);
         theGraph.addEdge(1, 2, 5);
         theGraph.addEdge(1, 15, 2);
         theGraph.addEdge(1, 20, 2);
@@ -105,6 +115,7 @@ public class B {
         //estado matrix
         theGraph.matrix();
     }
+
     public static void GraphTwo() {
         // dirigido
         Graph theGraph = new Graph(11);
@@ -179,6 +190,105 @@ public class B {
         theGraph.matrix();
     }
 
+    //algoritmo de prim
+    public static Graph AlgoritmoPrim(Graph g, int s) {
+////        Graph a = new Gr
+//        int n=g.nVerts;
+//        Entry[] table= new Entry[n];
+//        for (int i = 0; i < n; ++i)
+//            table[i]= new Entry;
+//        table[s].distance=0;
+//        PriorityQueue que= new binary
+        return null;
+    }
+
+    public static void AlgoritmoKruskal() {
+
+    }
+
+    public static void AlgoritmoDijkstra() {
+
+    }
+
+    //floid marchal
+    public static class CaminoMasCorto {
+        //algoritmo de floid
+
+        public String AlgoritmoFloid(long[][] Mady) {
+            int vertices = Mady.length;
+            long matrixAdy[][] = Mady;
+            String caminos[][] = new String[vertices][vertices];
+            String caminosAux[][] = new String[vertices][vertices];
+            String caminoreccorridos = "", cadena = "", caminitos = "";
+            int i, j, k;
+            float temp1, temp2, temp3, temp4, min;
+            //inicializo las matrices y caminos y caminos iniciales
+            for (i = 0; i < vertices; i++) {
+                for (j = 0; j < vertices; j++) {
+                    caminos[i][j] = "";
+                    caminosAux[i][j] = "";
+                }
+            }
+            //logica
+            for (k = 0; k < vertices; k++) {
+                for (i = 0; i < vertices; i++) {
+                    for (j = 0; j < vertices; j++) {
+                        temp1 = matrixAdy[i][j];
+                        temp2 = matrixAdy[i][k];
+                        temp3 = matrixAdy[k][j];
+                        temp4 = temp2 + temp3;
+                        //encontrar el camino minimo
+                        min = Math.min(temp1, temp4);
+                        if (temp1 != temp4) {
+                            if (min == temp4) {
+                                caminoreccorridos = "";
+                                caminosAux[i][j] = k + "";
+                                caminos[i][j] = CaminosR(i, k, caminosAux, caminoreccorridos) + (k + 1);
+                            }
+                        }
+                        matrixAdy[i][j] = (long) min;
+                    }
+                }
+            }
+            //agregando  el camino a cadena
+            for (i = 0; i < vertices; i++) {
+                for (j = 0; j < vertices; j++) {
+                    cadena = cadena + "[" + matrixAdy[i][j] + "]";
+                }
+                cadena += "\n";
+            }
+            //////////////////////////////////////
+
+            for (i = 0; i < vertices; i++) {
+                for (j = 0; j < vertices; j++) {
+                    if (matrixAdy[i][j] != 10000000) {
+                        if (i != j) {
+                            if (caminos[i][j].equals("")) {
+                                caminitos += "De [" + (i + 1) + "----->" + (j + 1) + "] irce por (" + (i + 1) + " , " + (j + 1) + ")\n";
+                            } else {
+                                caminitos += "De [" + (i + 1) + "----->" + (j + 1) + "] irce por (" + (i + 1) + " , " + caminos[i][j] + ", " + (j + 1) + ")\n";
+                            }
+                        }
+                    }
+                }
+            }
+            return "la matrix de caminos más cortos entre los diferentes vertices es...\n" + cadena
+                    + "\n los diferentes caminos más cortos entre vertices son: \n" + caminitos;
+        }
+
+        public String CaminosR(int i, int k, String[][] caminosAuxiliares, String CaminoRecorrido) {
+            if (caminosAuxiliares[i][k] == "") {
+                return "";
+            } else {
+                //recursividad fea
+                CaminoRecorrido += CaminosR(i, Integer.parseInt(caminosAuxiliares[i][k].toString()), caminosAuxiliares, CaminoRecorrido)
+                        + (Integer.parseInt(caminosAuxiliares[i][k].toString()) + 1) + ", ";
+                return CaminoRecorrido;
+            }
+        }
+
+    }
+
     public static class Graph {
 
         private int MAX_VERTS;
@@ -220,10 +330,11 @@ public class B {
 //            value[start][end] = peso;
             k2p3.put(start + "," + end, peso);
         }
-        public void addEdge(int start, int end,long peso,int dir){
-            adjMat[start][end]=adjMat[end][start]=1;
-            k2p3.put(start+","+end,peso);
-            k2p3.put(end+","+start,peso);
+
+        public void addEdge(int start, int end, long peso, int dir) {
+            adjMat[start][end] = adjMat[end][start] = 1;
+            k2p3.put(start + "," + end, peso);
+            k2p3.put(end + "," + start, peso);
         }
 
         public void displayVertx(int v) {
