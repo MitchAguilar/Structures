@@ -277,7 +277,7 @@ public class B {
         public String AlgoritmoFloid(long[][] Mady) {
             int vertices = Mady.length;
             long matrixAdy[][] = Mady;
-            String caminos[][] = new String[vertices][vertices];
+            String caminos[][] = new String[vertices][vertices];//caminos correctos de uno al otro
             String caminosAux[][] = new String[vertices][vertices];
             String caminoreccorridos = "", cadena = "", caminitos = "";
             int i, j, k;
@@ -311,17 +311,17 @@ public class B {
                 }
             }
             //agregando  el camino a cadena
-//            for (i = 0; i < vertices; i++) {
-//                for (j = 0; j < vertices; j++) {
-//                    cadena = cadena + "[" + matrixAdy[i][j] + "]";
-//                }
-//                cadena += "\n";
-//            }
-            //////////////////////////////////////
+            for (i = 0; i < vertices; i++) {
+                for (j = 0; j < vertices; j++) {
+                    cadena += "[" + matrixAdy[i][j] + "]";
+                }
+                cadena += "\n";
+            }
+            ////////////////////////////////////// 
 
             for (i = 0; i < vertices; i++) {
                 for (j = 0; j < vertices; j++) {
-                    if (matrixAdy[i][j] != 999999999) {//ojo 
+                    if (matrixAdy[i][j] != 1000000000) {//ojo invesil con el infinito
                         if (i != j) {
                             if (caminos[i][j].equals("")) {
                                 caminitos += "De [" + (i + 1) + "----->" + (j + 1) + "] irce por (" + (i + 1) + " , " + (j + 1) + ")\n";
@@ -332,9 +332,9 @@ public class B {
                     }
                 }
             }
-//            return "la matrix de caminos más cortos entre los diferentes vertices es...\n" + cadena
-//                    + "\n los diferentes caminos más cortos entre vertices son: \n" + caminitos;
-            return "los diferentes caminos más cortos entre vertices son: \n" + caminitos;
+            return "la matrix de caminos más cortos entre los diferentes vertices es...\n" + cadena
+                    + "\n los diferentes caminos más cortos entre vertices son: \n" + caminitos;
+//            return "los diferentes caminos más cortos entre vertices son: \n" + caminitos;
         }
 
         public String CaminosR(int i, int k, String[][] caminosAuxiliares, String CaminoRecorrido) {
